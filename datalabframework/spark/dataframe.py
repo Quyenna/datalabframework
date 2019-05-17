@@ -160,7 +160,7 @@ def add_hash_column(obj, cols=True, hash_colname = '_hash', exclude_cols=[]):
     colnames = (set(obj.columns) & set(cols)) - set(exclude_cols)
     cols = [x for x in cols if x in colnames]
     
-    obj = obj.withColumn(hash_colname, F.hash(*cols))
+    obj = obj.withColumn(hash_colname, F.md5(F.concat_ws('|', *cols)))
     return obj
 
 def empty(df):
