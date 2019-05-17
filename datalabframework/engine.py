@@ -191,10 +191,10 @@ class SparkEngine(Engine):
         #### submit: jars
         jars = submit_objs['jars']
             
-        if 'oracle' in services:
-            jar  = 'http://www.datanucleus.org/downloads/maven2/'
-            jar += 'oracle/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar'
-            jars.append(jar)
+#         if 'oracle' in services:
+#             jar  = 'http://www.datanucleus.org/downloads/maven2/'
+#             jar += 'oracle/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar'
+#             jars.append(jar)
         
         #### submit: packages
         packages = submit_objs['packages']
@@ -204,10 +204,10 @@ class SparkEngine(Engine):
                 packages.append('mysql:mysql-connector-java:8.0.12')
             elif v == 'sqlite':
                 packages.append('org.xerial:sqlite-jdbc:3.25.2')
-            elif v == 'postgres':
-                packages.append('org.postgresql:postgresql:42.2.5')
-            elif v == 'mssql':
-                packages.append('com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8')
+#             elif v == 'postgres':
+#                 packages.append('org.postgresql:postgresql:42.2.5')
+#             elif v == 'mssql':
+#                 packages.append('com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8')
             elif v == 'minio':
                 if hadoop_version:
                     packages.append(f"org.apache.hadoop:hadoop-aws:{hadoop_version}")
