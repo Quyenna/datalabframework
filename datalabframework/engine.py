@@ -432,7 +432,7 @@ class SparkEngine(Engine):
             print(e)
             logging.warning('Could not fully stop the engine context')
             
-    def load(self, path=None, provider=None, catch_exception=True, **kargs):
+    def load(self, path=None, provider=None, catch_exception=False, **kargs):
         if isinstance(path, YamlDict):
             md = path.to_dict()
         elif isinstance(path, str):
@@ -470,7 +470,7 @@ class SparkEngine(Engine):
         prep_end = timer()
 
         log_data = {
-            'md': dict(md),
+            'md': {i: md[i] for i in md if i != 'password'},
             'mode': kargs.get('mode', md.get('options', {}).get('mode')),
             'records': num_rows,
             'columns': num_cols,
@@ -493,7 +493,7 @@ class SparkEngine(Engine):
         
         return kargs
         
-    def load_dataframe(self, md, catch_exception=True, **kargs):
+    def load_dataframe(self, md, catch_exception=False, **kargs):
         obj = None
         options = md['options']
 
@@ -634,7 +634,7 @@ class SparkEngine(Engine):
         core_end = timer()
 
         log_data = {
-            'md': dict(md),
+            'md': {i: md[i] for i in md if i != 'password'},
             'mode': kargs.get('mode', options.get('mode')),
             'records': num_rows,
             'columns': num_cols,
